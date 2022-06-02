@@ -20,8 +20,19 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'lastname',
         'email',
+        'username',
         'password',
+        'birthdate',
+        'phone',
+        'tattooist_name',
+        'ARS_document' ,
+        'tattoo_parlor',
+        'street',
+        'street_number',
+        'locality',
+        'country',
         'type'
     ];
 
