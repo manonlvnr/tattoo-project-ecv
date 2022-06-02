@@ -47,8 +47,6 @@ class RegisteredUserController extends Controller
             'locality' => ['string', 'max:255'],
             'country' => ['string', 'max:255'],
             'role' => ['string', 'max:255'],
-            'review' => ['string', 'max:255'],
-            'creadit_card' => ['string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -67,8 +65,6 @@ class RegisteredUserController extends Controller
             'locality' => $request->locality,
             'country' => $request->country,
             'role' => $request->role,
-            'review' => $request->review,
-            'creadit_card' => $request->creadit_card,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
