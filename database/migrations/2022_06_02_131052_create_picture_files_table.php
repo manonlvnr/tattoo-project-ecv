@@ -22,7 +22,14 @@ return new class extends Migration
             $table->unsignedInteger('flash_id');
             $table->foreign('flash_id')
             ->references('id')
-            ->on('flashes');
+            ->on('flashes')
+            ->nullable();
+
+            $table->unsignedInteger('user_id');
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
+            ->nullable();
 
             $table->timestamps();
         });

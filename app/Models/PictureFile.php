@@ -9,8 +9,10 @@ class PictureFile extends Model
 {
     use HasFactory;
 
-
-    // In Gallery model
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function flash()
     {
         return $this->belongsTo(Flash::class);

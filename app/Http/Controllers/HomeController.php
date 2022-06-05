@@ -25,11 +25,13 @@ class HomeController extends Controller
      */
     public function main()
     {
-        // $flashes = Flash::where('active', 1)->limit(9)->get();
+        // TRAITEMENT //
+        // GET les flash
         $flashes = Flash::with('pictureFile')->where('active', 1)->limit(9)->get();
+        // GET les tatoueurs
         $tatoueurs = User::where('type', 1)->limit(9)->get();
 
-        var_dump($tatoueurs);
+        // VUE //
         return view('main', [
             'flashes' => $flashes,
             'tatoueurs' => $tatoueurs
