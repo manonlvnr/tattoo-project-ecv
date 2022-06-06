@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FlashesController;
+use App\Http\Controllers\TatoueursController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -22,6 +24,9 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [HomeController::class, 'main'])->name('main');
 
+Route::get('/flashes', [FlashesController::class, 'index'])->name('flashes');
+
+Route::get('/tatoueurs', [TatoueursController::class, 'index'])->name('tatoueurs');
 
 Auth::routes();
 

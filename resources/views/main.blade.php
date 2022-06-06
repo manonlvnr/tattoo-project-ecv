@@ -13,12 +13,12 @@
                     <h5 class="card-title">{{ $flash->name }}</h5>
                     <p class="card-text">{{ $flash->tattooist->tattooist_name }}</p>
                     <p class="card-text">{{ $flash->price }}$</p>
-                    <a href="#" class="btn btn-primary">Réserver</a>
+                    <a href="" class="btn btn-primary">Réserver</a>
                 </div>
             </div>
         @endforeach
     </div>
-    <a href="">Voir tous les tatouages</a>
+    <a href="{{ route('flashes') }}">Voir tous les tatouages</a>
 
     @if (count($tatoueurs) > 0)
         <h1>Tatoueurs</h1>
@@ -33,5 +33,5 @@
             </div>
         </div>
     @endforeach
-    <a href="">Voir tous les tatoueurs</a>
+    <a href="{{ route('tatoueurs') }}">Voir tous les tatoueurs</a>
 @endsection

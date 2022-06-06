@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('flashes', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->string('name');
             $table->integer('price');
             $table->boolean('color');
@@ -41,6 +41,11 @@ return new class extends Migration
             ->on('flashes');
 
             $table->timestamps();
+
+            $table->unsignedInteger('category_flashes_id');
+            $table->foreign('category_flashes_id')
+            ->references('id')
+            ->on('category_flashes');
         });
     }
 
@@ -51,6 +56,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('flashes');
     }
 };
