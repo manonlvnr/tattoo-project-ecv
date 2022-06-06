@@ -28,6 +28,8 @@ Route::get('/flashes', [FlashesController::class, 'index'])->name('flashes');
 
 Route::get('/tatoueurs', [TatoueursController::class, 'index'])->name('tatoueurs');
 
+Route::get('/tatoueurs/{id}', [TatoueursController::class, 'showTatoueur'])->name('showTatoueur');
+
 Auth::routes();
 
 /*------------------------------------------

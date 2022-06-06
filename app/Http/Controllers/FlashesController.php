@@ -18,7 +18,9 @@ class FlashesController extends Controller
         // TRAITEMENT //
         // GET les flash
 
+
         $flashes = Flash::with('pictureFile')->where('active', 1)->paginate(30);
+
         $category_id = $request->input('category');
 
         if (!empty($category_id)) {
