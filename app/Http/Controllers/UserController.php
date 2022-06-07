@@ -9,9 +9,9 @@ use App\Models\User;
 class UserController extends Controller
 {
 
-    function reservation(){
+    function booking(){
 
-        return view('welcome');
+        return view('userBooking');
     }
 
     function saveInfo(Request $req){

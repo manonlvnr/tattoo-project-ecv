@@ -58,8 +58,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.reservation') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('My reservation') }}
+                                    <a class="dropdown-item" href="{{ route('user.booking') }}">
+                                        {{ __('My Booking') }}
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
