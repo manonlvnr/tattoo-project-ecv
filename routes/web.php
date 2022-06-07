@@ -49,6 +49,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
   
     Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::post('/home/updateInfo', [UserController::class, 'saveInfo'])->name('user.saveInfo');
+    Route::get('/home/reservation', [UserController::class, 'profile'])->name('user.reservation');
 });
 
 /*------------------------------------------
