@@ -28,7 +28,7 @@
                 @else
                 <p class="card-text">Noir et blanc</p>
                 @endif
-                <a href="" class="btn btn-primary">Réserver</a>
+                <a href="{{ route('booking', $flash->id) }}" class="btn btn-primary">Réserver</a>
             </div>
         </div>
         @endforeach

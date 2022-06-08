@@ -39,7 +39,7 @@
                 @endif alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ $tatoueur->tattooist_name }}</h5>
-                <a href="" class="btn btn-primary">Voir plus</a>
+                <a href="{{ route('showTatoueur', $tatoueur->id) }}" class="btn btn-primary">Voir plus</a>
             </div>
         </div>
         @endforeach
