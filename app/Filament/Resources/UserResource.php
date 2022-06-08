@@ -25,7 +25,7 @@ class UserResource extends Resource
             ->schema([
                 TextInput::make('name')->autofocus()->required(),
                 TextInput::make('email')->required(),
-                TextInput::make('password'),
+                TextInput::make('password')->required(),
                 TextInput::make('type')->required(),
                 DateTimePicker::make('birthdate'),
                 TextInput::make('phone'),

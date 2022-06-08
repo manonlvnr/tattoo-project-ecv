@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19ed150900f1aec067913245acd1c996",
+    "content-hash": "34fcb65a20bde3493b2309b1051204a3",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -3083,6 +3083,72 @@
                 }
             ],
             "time": "2021-12-04T23:24:31+00:00"
+        },
+        {
+            "name": "phpsa/filament-dadjokes",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpsa/filament-dadjokes.git",
+                "reference": "f3d89f523cb92620ae1af45aafde2a9edc13c6a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpsa/filament-dadjokes/zipball/f3d89f523cb92620ae1af45aafde2a9edc13c6a1",
+                "reference": "f3d89f523cb92620ae1af45aafde2a9edc13c6a1",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^2.9",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Phpsa\\FilamentDadJokes\\FilamentDadJokesProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phpsa\\FilamentDadJokes\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig G Smith",
+                    "email": "vxdhost@gmail.com"
+                }
+            ],
+            "description": "With DadJokes every time you load your control panel you'll be greeted by an epic dad joke on the dashboard.",
+            "homepage": "https://cgs4k.nz",
+            "keywords": [
+                "cli",
+                "filament",
+                "fun",
+                "laravel",
+                "resource",
+                "ui",
+                "user",
+                "widget"
+            ],
+            "support": {
+                "issues": "https://github.com/phpsa/filament-dadjokes/issues",
+                "source": "https://github.com/phpsa/filament-dadjokes/tree/v1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/phpsa",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-05-06T03:37:34+00:00"
         },
         {
             "name": "psr/cache",
