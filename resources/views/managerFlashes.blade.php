@@ -11,7 +11,8 @@
 
                     <div class="m-4">
 
-                        <a class="btn btn-primary mb-3" type="button" href="{{ route('manager.add')}}">Add a new flash</a>
+                        <a class="btn btn-primary mb-3" type="button" href="{{ route('manager.add')}}">Add a new
+                            flash</a>
 
                         <ul class="nav nav-tabs" id="myTab">
                             <li class="nav-item">
@@ -29,40 +30,104 @@
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="all">
-                                <h4 class="mt-2">All tab content</h4>
+                                <div class="row">
+                                    @foreach ($flashes as $flash)
 
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">400.00 € - 50min - 30cm / 30cm </p>
+                                    <div class="col-6">
+                                        <div class="card" style="margin:12px;">
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $flash->name }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
+                                                <p class="card-text">All tattoos</p>
+                                                <a href="{{ route('manager.editFlash', $flash->id) }}"
+                                                    class="card-link">Edit</a>
+                                                <a href="{{ route('manager.deleteFlash', $flash->id) }}"
+                                                    class="card-link">Delete</a>
+                                            </div>
+
+                                        </div>
+
                                     </div>
+
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="available">
-                                <h4 class="mt-2">Profile tab content</h4>
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">400.00 € - 50min - 30cm / 30cm </p>
+                                <div class="row">
+                                    @foreach ($flashes as $flash)
+                                    @if ($flash->active == 1 && $flash->order == 0)
+
+                                    <div class="col-6">
+                                        <div class="card" style="margin:12px;">
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $flash->name }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
+                                                <p class="card-text">This tattoo is available</p>
+                                                <a href="{{ route('manager.editFlash', $flash->id) }}"
+                                                    class="card-link">Edit</a>
+                                                <a href="{{ route('manager.deleteFlash', $flash->id) }}"
+                                                    class="card-link">Delete</a>
+                                            </div>
+
+                                        </div>
+
                                     </div>
+                                    @endif
+
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="reserved">
-                                <h4 class="mt-2">Messages tab content</h4>
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">400.00 € - 50min - 30cm / 30cm </p>
+                                <div class="row">
+                                    @foreach ($flashes as $flash)
+                                    @if ($flash->active == 0 && $flash->order == 0)
+
+                                    <div class="col-6">
+                                        <div class="card" style="margin:12px;">
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $flash->name }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
+                                                <p class="card-text">This tattoo is reserved</p>
+                                                <a href="{{ route('manager.editFlash', $flash->id) }}"
+                                                    class="card-link">Edit</a>
+                                                <a href="{{ route('manager.deleteFlash', $flash->id) }}"
+                                                    class="card-link">Delete</a>
+                                            </div>
+
+                                        </div>
+
                                     </div>
+                                    @endif
+
+                                    @endforeach
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="tattooed">
-                                <h4 class="mt-2">Messages tab content</h4>
-                                <div class="card" style="width: 18rem;">
-                                    <img src="..." class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <p class="card-text">400.00 € - 50min - 30cm / 30cm </p>
+                                <div class="row">
+                                    @foreach ($flashes as $flash)
+                                    @if ($flash->order == 1)
+
+                                    <div class="col-6">
+                                        <div class="card" style="margin:12px;">
+
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $flash->name }}</h5>
+                                                <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
+                                                <p class="card-text">This tattoo has been ordered yet</p>
+                                                <a href="{{ route('manager.editFlash', $flash->id) }}"
+                                                    class="card-link">Edit</a>
+                                                <a href="{{ route('manager.deleteFlash', $flash->id) }}"
+                                                    class="card-link">Delete</a>
+                                            </div>
+
+                                        </div>
+
                                     </div>
+                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

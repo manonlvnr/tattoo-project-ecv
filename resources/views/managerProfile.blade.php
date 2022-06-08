@@ -38,11 +38,11 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="exampleFormControlInput1" class="form-label">Birthdate</label>
+                                            <label for="exampleFormControlInput1" class="form-label">Birthdate - <strong> {{ $user->birthdate }} </strong></label>
 
                                             <div class="input-group">
                                                 <input type="date" class="form-control" name="birthdate"
-                                                    value=" {{ Auth::user()->birthdate }} ">
+                                                    value=" {{ $user->birthdate }} ">
 
                                                 <input type="hidden" name="id" value=" {{ $user['id'] }} ">
 

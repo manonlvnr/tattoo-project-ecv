@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Add a new flash') }}</div>
+                <div class="card-header">Edit your tattoo : {{ $flash->name }}</div>
 
                 <div class="card-body">
 
@@ -26,19 +26,21 @@
 
                         </div>
 
-                        <form action="{{ route('manager.newFlash') }}" method="POST">
+                        <form action="{{ route('manager.updateFlash') }}" method="POST">
                             @csrf
+                            @method('PUT')
+                            <input type="hidden" name="id" value="{{$flash['id']}}">
                             <div class="row">
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label">Name</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Enter a name">
+                                        <input type="text" class="form-control" name="name" value="{{ $flash->name }}">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="mb-3">
                                         <label class="form-label">Price (€)</label>
-                                        <input type="text" class="form-control" name="price" placeholder="--">
+                                        <input type="text" class="form-control" name="price" value="{{ $flash->price}}">
                                     </div>
                                 </div>
 
@@ -47,20 +49,25 @@
                                 <div class="col">
                                     <div class="mb-3">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="1" name="available"
+                                        @if($flash->active == "1")
+                                            <input class="form-check-input" type="checkbox" value="1" name="active"
                                                 checked>
+                                        @else
+                                            <input class="form-check-input" type="checkbox" value="0" name="active">
+                                        @endif
                                             <label class="form-check-label" for="flexCheckChecked">
-                                                Available
+                                                Active
                                             </label>
                                         </div>
                                     </div>
+
                                 </div>
 
                                 <div class="row">
                                     <div class="col">
                                         <a href="{{ route('manager.flashes') }}" class="btn btn-dark">Cancel</a>
 
-                                        <button type="submit" class="btn btn-primary">Add</button>
+                                        <button type="submit" class="btn btn-warning">Save</button>
                                         <div>
                                         </div>
 

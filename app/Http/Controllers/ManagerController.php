@@ -10,22 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class ManagerController extends Controller
 {
+
+    // PROFIL
     function profile(){
         $data = Auth::user();
         // dd($data);
         return view('managerProfile', ['user'=>$data]);
-    }
-
-    function flashes(){
-        return view('managerFlashes');
-    }
-
-    function addFlash(){
-        return view('managerAddFlash');
-    }
-    function calendar(){
-
-        return view('managerCalendar');
     }
 
     function saveInfo(Request $req){
@@ -43,36 +33,38 @@ class ManagerController extends Controller
         return redirect('/manager/profile');
     }
 
-    function store(Request $request){
+
+    // FLASHES
+
+    function flashes(){
+        $data = [];
+        if(Flash::find(Auth::user())){
+            // $data = User::find(Auth::user()->id)->getFlashes();
+            $data = Flash::All();
+            // dd($data);
+            return view('managerFlashes', ['flashes'=>$data]);
+        }else{
+            return view('managerFlashes', ['flashes'=>$data]);
+            
+        }
+       
         
-    //      $validatedData = $request->validate([
-    //       'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
- 
-    //      ]);
-    //     $name = $request->file('image')->getClientOriginalName();
-        
-    //     $path = $request->file('image')->store('public/images');
- 
- 
-    //     $save = new PictureFile;
- 
-    //     $save->filename = $name;
-    //     $save->mime = $path;
-    //     $save->flash_id = Auth::user()->id;
- 
-    //     $save->save();
- 
-    //   return redirect('image-upload')->with('status', 'Image Has been uploaded')->with('image',$name);
- 
     }
 
     function newFlash(Request $req){
 
-        dd($req->all());
         $data = new Flash;
         $data->name = $req->name;
         $data->price = $req->price;
-        $data->color = $req->color;
+        $data->color = 1;
+
+        if($req->active){
+            $data->active = 1;
+        }else{
+            $data->active = 0;
+        }
+        $data->order = "0";
+        $data->tattooist_id = Auth::user()->id;
 
         $data->save();
         return redirect('/manager/flashes');
@@ -80,6 +72,57 @@ class ManagerController extends Controller
     }
 
 
+    function editFlash($id){
+
+        $data = Flash::findOrFail($id);
+        if(Auth::id() != $data->tattooist_id){
+            abort(404);
+        }   
+        
+        return view('managerEditFlash', ['flash'=>$data]);
+    }
+
+    function deleteFlash($id){
+        
+        $data = Flash::findOrFail($id);
+        // dd($data);
+        if(Auth::id() != $data->tattooist_id){
+            abort(404);
+        }
+        $data->delete();
 
 
+
+        return redirect('/manager/flashes');
+    }
+
+    function updateFlash(Request $req){
+
+        $data = Flash::findOrFail($req->id);
+        $data->name = $req->name;
+        $data->price = $req->price;
+        // $data->active = 0;
+        
+        $data->save();
+        return redirect('/manager/flashes');
+ 
+    }
+
+    function addFlashPhotos(Request $req){
+        $image = $req->file('image');
+        $name = $image->getClientOriginalName();
+        $image->move(public_path().'/images/', $name);
+        $image = new PictureFile();
+        $image->filename = $name;
+        // $image->flash_id = 4;
+        $image->save();  
+        return redirect('/manager/flashes');
+    }
+
+
+    // CALENDAR
+    function calendar(){
+
+        return view('managerCalendar');
+    }
 }

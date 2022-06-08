@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('flashes', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->string('name');
             $table->integer('price');
             $table->boolean('color');
             $table->boolean('active');
-            $table->integer('order');
+            $table->integer('order')->nullable();
 
 
-            $table->unsignedInteger('customer_id');
+            $table->unsignedInteger('customer_id')->nullable();
             $table->unsignedInteger('tattooist_id');
 
             $table->foreign('tattooist_id')
@@ -34,13 +34,20 @@ return new class extends Migration
             $table->foreign('customer_id')
             ->references('id')
             ->on('users');
+            
 
-            $table->unsignedInteger('skin_id');
+            $table->unsignedInteger('skin_id')->nullable();
             $table->foreign('skin_id')
             ->references('id')
-            ->on('flashes');
+            ->on('flashes')
+            ->nullable();
 
             $table->timestamps();
+
+            $table->unsignedInteger('category_flashes_id');
+            $table->foreign('category_flashes_id')
+            ->references('id')
+            ->on('category_flashes');
         });
     }
 
@@ -51,6 +58,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('flashes');
     }
 };
