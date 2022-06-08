@@ -27,6 +27,7 @@
     <h2>Flash</h2>
     <div class="d-flex flex-row m-2">
         @foreach ($tatoueur->Flash as $flash)
+        @if ($flash->active != 0)
         <div class="card me-2" style="width: 18rem;">
             <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}"
                 alt="Card image cap">
@@ -42,6 +43,7 @@
                 <a href="{{ route('booking', $flash->id) }}" class="btn btn-primary">Réserver</a>
             </div>
         </div>
+        @endif
         @endforeach
     </div>
 </div>
