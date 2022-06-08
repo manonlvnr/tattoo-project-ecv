@@ -36,8 +36,6 @@ class BookingController extends Controller
                 $items[] = $date->datetime;
             }
 
-
-
         // VUE
         return view('booking', [
             // 'tatoueur' => $tatoueur,
@@ -47,7 +45,7 @@ class BookingController extends Controller
     }
 
     /**
-     * Traitemetn formulaire de reservation
+     * Traitement formulaire de reservation
      */
     public function post(Request $request) {
         // CONFIG
