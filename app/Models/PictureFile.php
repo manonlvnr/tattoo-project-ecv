@@ -20,10 +20,6 @@ class PictureFile extends Model
         return $this->belongsTo(Flash::class);
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 
 
 
