@@ -26,13 +26,16 @@
     </form>
 </div>
 
+@endsection
 
-<script src="https://cdn.jsdelivr.net/npm/flatpickr">
-</script>
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 <script>
     var bool = {!! json_encode($dates_array) !!};
+
     console.log(bool);
+
     flatpickr('#calendar', {
                     "minDate": new Date().fp_incr(1),
                     disable: bool,
