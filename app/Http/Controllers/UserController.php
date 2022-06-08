@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -12,6 +13,12 @@ class UserController extends Controller
     function booking(){
 
         return view('userBooking');
+    }
+    
+    public function calendarBookings(Request $request)
+    {
+        $eventList = Booking::get(['event_name','event_start']);
+        return response()->json(["My events" => $eventList]);
     }
 
     function saveInfo(Request $req){

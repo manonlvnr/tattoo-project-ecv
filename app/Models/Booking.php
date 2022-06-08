@@ -13,4 +13,9 @@ class Booking extends Model
     {
         return $this->hasOne(User::class, 'tattooist_id');
     }
+    protected $fillable = [
+        'event_name',
+        'event_start',
+        'event_end'
+    ];
 }
