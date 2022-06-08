@@ -59,9 +59,9 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" href="{{ route('manager.calendar') }}">
+                                <!-- <a class="dropdown-item" href="{{ route('manager.calendar') }}">
                                     {{ __('My calendar') }}
-                                    </a>
+                                    </a> -->
 
                                     <a class="dropdown-item" href="{{ route('manager.profile') }}">
                                     {{ __('My profile') }}

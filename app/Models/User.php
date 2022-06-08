@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    // protected $primaryKey = 'tattooist_id';
 
     /**
      * The attributes that are mass assignable.
@@ -78,5 +79,15 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) =>  ["user", "admin", "manager"][$value],
         );
+    }
+
+
+
+    /**
+     * Get the flashes for a tattooist user.
+     */
+    public function getFlashes()
+    {
+        return $this->hasMany(Flash::class);
     }
 }
