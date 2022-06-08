@@ -10,6 +10,7 @@ use App\Http\Controllers\BookingController;
 
 use App\Http\Controllers\ManagerController;
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -45,8 +46,10 @@ All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+  
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
+    Route::post('/home/updateInfo', [UserController::class, 'saveInfo'])->name('user.saveInfo');
+    Route::get('/home/booking', [UserController::class, 'booking'])->name('user.booking');
 });
 
 /*------------------------------------------

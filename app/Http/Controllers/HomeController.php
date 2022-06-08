@@ -44,11 +44,13 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function home()
     {
-        return view('home');
-    }
+        $data = Auth::user();
+        return view('home', ['user'=>$data]);
+    } 
 
+  
     /**
      * Show the application dashboard.
      *

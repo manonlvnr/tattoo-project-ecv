@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->dateTime('datetime', $precision = 0);
+            $table->dateTime('datetime', $precision = 0)->nullable();
 
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('tattooist_id');
@@ -34,6 +34,9 @@ return new class extends Migration
             ->references('id')
             ->on('flashes');
 
+            $table->string('event_name')->nullable();
+            $table->date('event_start')->nullable();
+            $table->date('event_end')->nullable(); 
             $table->timestamps();
         });
     }
