@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FlashesController;
+use App\Http\Controllers\TatoueursController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -16,9 +19,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [HomeController::class, 'main'])->name('main');
+
+Route::get('/flashes', [FlashesController::class, 'index'])->name('flashes');
+
+Route::get('/tatoueurs', [TatoueursController::class, 'index'])->name('tatoueurs');
+
+Route::get('/tatoueurs/{id}', [TatoueursController::class, 'showTatoueur'])->name('showTatoueur');
+
+Route::get('/flash/booking/{id}', [BookingController::class, 'index'])->name('booking');
+
+Route::post('/flash/booking/{id}', [BookingController::class, 'post'])->name('post');
+
 
 Auth::routes();
 
@@ -28,26 +41,26 @@ All Normal Users Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:user'])->group(function () {
-  
+
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
-  
+
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 });
-  
+
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
 Route::middleware(['auth', 'user-access:manager'])->group(function () {
-  
+
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
 });

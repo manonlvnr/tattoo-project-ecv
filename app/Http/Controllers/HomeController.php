@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Flash;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,7 +18,27 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-  
+
+     /**
+     * Show home page
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function main()
+    {
+        // TRAITEMENT //
+        // GET les flash
+        $flashes = Flash::with('pictureFile')->where('active', 1)->limit(9)->get();
+        // GET les tatoueurs
+        $tatoueurs = User::where('type', 1)->limit(9)->get();
+
+        // VUE //
+        return view('main', [
+            'flashes' => $flashes,
+            'tatoueurs' => $tatoueurs
+        ]);
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -24,8 +47,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
-    } 
-  
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -35,7 +58,7 @@ class HomeController extends Controller
     {
         return view('adminHome');
     }
-  
+
     /**
      * Show the application dashboard.
      *

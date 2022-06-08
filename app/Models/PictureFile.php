@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class PictureFile extends Model
 {
     use HasFactory;
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function flash()
+    {
+        return $this->belongsTo(Flash::class);
+    }
 }

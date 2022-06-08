@@ -55,6 +55,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function pictureFile()
+    {
+        return $this->hasOne(PictureFile::class);
+    }
+
+    public function flash()
+    {
+        return $this->hasMany(Flash::class, 'tattooist_id');
+    }
+
+
+
     /**
      * Interact with the user's first name.
      *
