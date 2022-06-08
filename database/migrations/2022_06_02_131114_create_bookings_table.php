@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->dateTime('datetime', $precision = 0);
 
             $table->unsignedInteger('customer_id');
             $table->unsignedInteger('tattooist_id');
+            $table->unsignedInteger('flash_id');
 
             $table->foreign('tattooist_id')
             ->references('id')
@@ -28,6 +29,10 @@ return new class extends Migration
             $table->foreign('customer_id')
             ->references('id')
             ->on('users');
+
+            $table->foreign('flash_id')
+            ->references('id')
+            ->on('flashes');
 
             $table->timestamps();
         });

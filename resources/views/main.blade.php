@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@if(Session::has('success'))
+<div class="alert alert-success">
+    {{Session::get('success')}}
+</div>
+@endif
 <div class="container">
     @if (count($flashes) > 0)
     <h1>Flash</h1>
@@ -14,7 +19,7 @@
                 <h5 class="card-title">{{ $flash->name }}</h5>
                 <p class="card-text">{{ $flash->tattooist->tattooist_name }}</p>
                 <p class="card-text">{{ $flash->price }}$</p>
-                <a href="" class="btn btn-primary">Réserver</a>
+                <a href="{{ route('booking', $flash->id) }}" class="btn btn-primary">Réserver</a>
             </div>
         </div>
         @endforeach
@@ -34,7 +39,7 @@
                 @endif alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title">{{ $tatoueur->tattooist_name }}</h5>
-                <a href="#" class="btn btn-primary">Voir plus</a>
+                <a href="" class="btn btn-primary">Voir plus</a>
             </div>
         </div>
         @endforeach
