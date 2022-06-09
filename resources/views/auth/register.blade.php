@@ -77,7 +77,6 @@
                                     <option selected>Open this select menu</option>
                                     <option value="0" >User</option>
                                     <option value="2">Tattooer</option>
-                                    <option value="1">Admin</option>
                                 </select> </div>
                         </div>
 
