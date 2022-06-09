@@ -17,8 +17,10 @@
     <div class="d-flex flex-row">
         @foreach ($tatoueurs as $tatoueur)
         <div class="card" style="width: 18rem;">
+            @if ($tatoueur->PictureFile != NULL)
             <img class="card-img-top" src="{{ asset('images/profil_picture/' . $tatoueur->PictureFile->filename) }}"
-                alt="Card image cap">
+            alt="Card image cap">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $tatoueur->tattooist_name }}</h5>
                 <p>{{ $tatoueur->locality }}</p>
