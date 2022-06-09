@@ -34,7 +34,7 @@
     <div class="d-flex flex-row mb-4">
         @foreach ($tatoueurs as $tatoueur)
         <div class="card me-2" style="width: 18rem;">
-            @if ($tatoueur->PictureFile->filename != null)
+            @if ($tatoueur->PictureFile != null)
             <img class="card-img-top" src="{{ asset('images/profil_picture/' . $tatoueur->PictureFile->filename) }}"
                 @endif alt="Card image cap">
             <div class="card-body">
