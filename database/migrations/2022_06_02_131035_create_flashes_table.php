@@ -18,13 +18,13 @@ return new class extends Migration
 
             $table->string('name');
             $table->integer('price');
-            $table->boolean('color');
-            $table->boolean('active');
+            $table->boolean('color')->nullable();
+            $table->boolean('active')->nullable();
             $table->integer('order')->nullable();
 
 
             $table->unsignedInteger('customer_id')->nullable();
-            $table->unsignedInteger('tattooist_id');
+            $table->unsignedInteger('tattooist_id')->nullable();
 
             $table->foreign('tattooist_id')
             ->references('id')
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->foreign('customer_id')
             ->references('id')
             ->on('users');
-            
+
 
             $table->unsignedInteger('skin_id')->nullable();
             $table->foreign('skin_id')
@@ -44,7 +44,7 @@ return new class extends Migration
 
             $table->timestamps();
 
-            $table->unsignedInteger('category_flashes_id');
+            $table->unsignedInteger('category_flashes_id')->nullable();
             $table->foreign('category_flashes_id')
             ->references('id')
             ->on('category_flashes');

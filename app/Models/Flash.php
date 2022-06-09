@@ -25,6 +25,13 @@ class Flash extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+    protected $fillable = [
+        'name',
+        'price',
+        'active',
+        'color',
+        'tattooist_id',
+        'category_flashes_id'
+    ];
 
 }
