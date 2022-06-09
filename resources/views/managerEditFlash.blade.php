@@ -6,29 +6,35 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Edit your tattoo : {{ $flash->name }}</div>
-
+      
                 <div class="card-body">
 
+
+                <form action="{{ route('manager.updateFlash') }}" method="POST"  enctype="multipart/form-data" >
+                            @csrf
+                            @method('PUT')
                     <div class="container">
                         <div class="row mb-3">
                             <div class="col">
                                 <label class="form-label">Flash photo</label> <br>
                 
-                                    <label for="file-input">
+                                    <!-- <label for="file-input">
                                         <div id="flash_photo_u" class="form-control-file" class="align-middle"
                                             style="text-align: -webkit-center; line-height: 200px; height: 200px; width: 200px; color: #ffcb20;font-size: 50px;background: #fff;border: 1px solid #dfdfdf;-webkit-transition: .2s;transition: .2s ease all;">
                                             +
                                         </div>
-                                    </label>
-                                    <input id="file-input" type="file" style="display:none" />
-                
+                                    </label> -->
+                                
+
+                                    @if ($flash->pictureFile)
+                                        <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}">
+                                        @endif
+                                        <input type="file" name="fileImageEdit" style="" class="mt-3 mb-3" />
                             </div>
 
                         </div>
 
-                        <form action="{{ route('manager.updateFlash') }}" method="POST">
-                            @csrf
-                            @method('PUT')
+                  
                             <input type="hidden" name="id" value="{{$flash['id']}}">
                             <div class="row">
                                 <div class="col">

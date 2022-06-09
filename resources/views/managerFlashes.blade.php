@@ -35,8 +35,11 @@
 
                                     <div class="col-6">
                                         <div class="card" style="margin:12px;">
-
+                        
                                             <div class="card-body">
+                                            @if ($flash->pictureFile)
+                                        <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}">
+                                        @endif
                                                 <h5 class="card-title">{{ $flash->name }}</h5>
                                                 <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
                                                 <p class="card-text">All tattoos</p>
@@ -62,6 +65,9 @@
                                         <div class="card" style="margin:12px;">
 
                                             <div class="card-body">
+                                            @if ($flash->pictureFile)
+                                        <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}">
+                                        @endif
                                                 <h5 class="card-title">{{ $flash->name }}</h5>
                                                 <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
                                                 <p class="card-text">This tattoo is available</p>
@@ -88,6 +94,10 @@
                                         <div class="card" style="margin:12px;">
 
                                             <div class="card-body">
+                                        <!-- img -->
+                                        @if ($flash->pictureFile)
+                                        <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}">
+                                        @endif
                                                 <h5 class="card-title">{{ $flash->name }}</h5>
                                                 <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
                                                 <p class="card-text">This tattoo is reserved</p>
@@ -114,6 +124,9 @@
                                         <div class="card" style="margin:12px;">
 
                                             <div class="card-body">
+                                            @if ($flash->pictureFile)
+                                        <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}">
+                                        @endif
                                                 <h5 class="card-title">{{ $flash->name }}</h5>
                                                 <h6 class="card-subtitle mb-2 text-muted">{{ $flash->price }} €</h6>
                                                 <p class="card-text">This tattoo has been ordered yet</p>

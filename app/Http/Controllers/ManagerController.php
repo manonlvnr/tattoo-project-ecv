@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\PictureFile;
 use App\Models\Flash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\UploadedFile;
+
 
 class ManagerController extends Controller
 {
@@ -40,8 +42,7 @@ class ManagerController extends Controller
         $data = [];
         if(Flash::find(Auth::user())){
             // $data = User::find(Auth::user()->id)->getFlashes();
-            $data = Flash::All();
-            // dd($data);
+            $data = Flash::with('pictureFile')->get();
             return view('managerFlashes', ['flashes'=>$data]);
         }else{
             return view('managerFlashes', ['flashes'=>$data]);
@@ -52,6 +53,7 @@ class ManagerController extends Controller
     }
 
     function newFlash(Request $req){
+ 
 
         $data = new Flash;
         $data->name = $req->name;
@@ -67,6 +69,23 @@ class ManagerController extends Controller
         $data->tattooist_id = Auth::user()->id;
 
         $data->save();
+
+        $flash_id = Flash::latest()->first()->id;
+        
+
+        if ($req->hasFile('fileImage')){ 
+            $originaleFilename = $req->file('fileImage');
+            $name = $originaleFilename->getClientOriginalName();
+            $originaleFilename->move(public_path().'/images/flashes/', $name);
+            $image = new PictureFile();
+            $image->filename = $name;
+    
+            $image->flash_id = $flash_id;
+            $image->save();
+           
+         }
+
+
         return redirect('/manager/flashes');
 
     }
@@ -84,11 +103,15 @@ class ManagerController extends Controller
 
     function deleteFlash($id){
         
+
+        // Suppression de l'image associée
+        $flash = Flash::findOrFail($id);
+        $flash->pictureFile()->delete();
+
+
+    
+
         $data = Flash::findOrFail($id);
-        // dd($data);
-        if(Auth::id() != $data->tattooist_id){
-            abort(404);
-        }
         $data->delete();
 
 
@@ -102,8 +125,29 @@ class ManagerController extends Controller
         $data->name = $req->name;
         $data->price = $req->price;
         // $data->active = 0;
-        
         $data->save();
+
+        // dd($req->hasFile('fileImageEdit'));
+        if ($req->hasFile('fileImageEdit')){ 
+            // Suppression de l'image
+            $image = PictureFile::where('flash_id', $req->id)->first();
+            $image->delete();
+
+            $filename = $image->filename;
+            $path = public_path().'/images/flashes/'.$filename;
+            unlink($path);
+
+
+            $originaleFilename = $req->file('fileImageEdit');
+            $name = $originaleFilename->getClientOriginalName();
+            $originaleFilename->move(public_path().'/images/flashes/', $name);
+            $image = new PictureFile();
+            $image->filename = $name;
+    
+            $image->flash_id = $data->id;
+            $image->save();
+        }
+    
         return redirect('/manager/flashes');
  
     }
