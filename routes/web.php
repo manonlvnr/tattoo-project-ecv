@@ -69,7 +69,7 @@ All Admin Routes List
 --------------------------------------------*/
 
 
-Route::middleware(['auth', 'user-access:user'])->group(function () {
+Route::middleware(['auth', 'user-access:manager'])->group(function () {
 
     Route::get('/manager/home', [HomeController::class, 'managerHome'])->name('manager.home');
     Route::get('/manager/profile', [ManagerController::class, 'profile'])->name('manager.profile');
@@ -87,7 +87,7 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/manager/flashes/delete/{id}', [ManagerController::class, 'deleteFlash'])->name('manager.deleteFlash'); 
 
     // ROUTE PUT
-        Route::get('/manager/flashes/edit/{id}', [ManagerController::class, 'editFlash'])->name('manager.editFlash'); 
+    Route::get('/manager/flashes/edit/{id}', [ManagerController::class, 'editFlash'])->name('manager.editFlash'); 
     Route::put('/manager/updateFlash', [ManagerController::class, 'updateFlash'])->name('manager.updateFlash');
 
 });
