@@ -13,11 +13,15 @@
     <div class="d-flex flex-row mb-4">
         @foreach ($flashes as $flash)
         <div class="card me-2" style="width: 18rem;">
-            <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}"
+            @if ($flash->PictureFile != null)
+                <img class="card-img-top" src="{{ asset('images/flashes/' . $flash->PictureFile->filename) }}"
                 alt="Card image cap">
+            @endif
             <div class="card-body">
                 <h5 class="card-title">{{ $flash->name }}</h5>
+                @if ( $flash->tattooist != NULL)
                 <p class="card-text">{{ $flash->tattooist->tattooist_name }}</p>
+                @endif
                 <p class="card-text">{{ $flash->price }}$</p>
                 <a href="{{ route('booking', $flash->id) }}" class="btn btn-primary">Réserver</a>
             </div>
